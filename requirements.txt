@@ -1,0 +1,14 @@
+# FastAPI é o framework usado para criar a API.
+fastapi  
+
+# Uvicorn é o servidor ASGI que executa a aplicação FastAPI.
+uvicorn  
+
+# OpenAI Whisper é a biblioteca usada para transcrição automática de áudio.
+openai-whisper  
+
+# FFmpeg é necessário para manipular arquivos de áudio e vídeo.
+ffmpeg  
+
+# python-multipart é necessário para processar uploads de arq
+python-multipart

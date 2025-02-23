@@ -1,0 +1,23 @@
+version: '3.8'  # (Opcional) Versão do Docker Compose, pode ser removido pois versões recentes não exigem mais isso.
+
+services:
+  whisper:  # Define o serviço chamado "whisper"
+    build: .  # Indica que o Docker deve construir a imagem a partir do Dockerfile na raiz do projeto.
+    
+    container_name: whisper-transcriber  # Define o nome do contêiner para facilitar a identificação ao rodar `docker ps`.
+    
+    ports:
+      - "8000:8000"  # Mapeia a porta 8000 do contêiner para a porta 8000 do host, permitindo acesso externo.
+
+    volumes:
+      - ./uploads:/app/uploads  # Cria um volume para persistir arquivos na pasta "uploads" do host dentro do contêiner.
+
+    environment:
+      - PYTHONUNBUFFERED=1  # Garante que os logs do Python sejam exibidos em tempo real, sem bufferização.
+
+    command: ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+    # Define o comando que será executado dentro do contêiner:
+    # - "uvicorn" -> Servidor ASGI para rodar aplicações FastAPI.
+    # - "main:app" -> Indica o arquivo `main.py` e a variável `app` onde a API está definida.
+    # - "--host", "0.0.0.0" -> Permite que o servidor aceite conexões externas, tornando a API acessível.
+    # - "--port", "8000" -> Define a porta onde a API rodará dentro do contêiner.

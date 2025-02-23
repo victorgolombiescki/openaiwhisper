@@ -1,0 +1,2 @@
+chmod +x install_docker_linux.sh  # Dá permissão de execução
+./install_docker_linux.sh  # Executa o script
